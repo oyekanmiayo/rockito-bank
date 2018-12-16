@@ -1,15 +1,24 @@
 package com.oyekanmiayo.rockito.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Entity
 public class PrimaryAccount {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private int accountNumber;
 
     private BigDecimal accountBalance;
 
+    @OneToMany(mappedBy = "primaryAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore //Infinite loop will occur during serialization because of round-reference
     private List<PrimaryTransaction> primaryTransactionList;
 
     public long getId() {

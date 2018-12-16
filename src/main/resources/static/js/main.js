@@ -38,9 +38,6 @@
             }
         });
     };
-
-
-
 }(jQuery));
 
 $(document).ready(function() {

@@ -1,9 +1,14 @@
 package com.oyekanmiayo.rockito.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Entity
 public class PrimaryTransaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private Date date;
@@ -18,6 +23,8 @@ public class PrimaryTransaction {
 
     private BigDecimal availableBalance;
 
+    @ManyToOne
+    @JoinColumn(name = "primary_account_id")
     private PrimaryAccount primaryAccount;
 
     public PrimaryTransaction(){ }

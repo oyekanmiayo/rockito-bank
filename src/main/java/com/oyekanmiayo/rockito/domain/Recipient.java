@@ -1,6 +1,14 @@
 package com.oyekanmiayo.rockito.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
 public class Recipient  {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String name;
@@ -13,6 +21,9 @@ public class Recipient  {
 
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     public long getId() {
